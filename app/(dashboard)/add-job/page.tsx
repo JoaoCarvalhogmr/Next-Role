@@ -1,9 +1,11 @@
+import CreateJobForm from "@/components/CreateJobForm"
+
 
 const AddJobPage = () => {
   return (
-    <h1 className="text-4xl">
-      AddJobPage
-    </h1>
+    <section>
+      <CreateJobForm />
+    </section>
   )
 }
 
