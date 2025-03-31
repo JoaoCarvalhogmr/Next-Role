@@ -38,4 +38,11 @@ export const createAndEditJobSchema = z.object({
     mode: z.nativeEnum(JobMode),
 })
 
+export type GetAllJobsActionTypes = {
+    search?: string;
+    jobStatus?: string;
+    page?: number;
+    limit?:number;
+}
+
 export type CreateAndEditJobType = z.infer<typeof createAndEditJobSchema>

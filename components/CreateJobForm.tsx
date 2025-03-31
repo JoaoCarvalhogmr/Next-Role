@@ -43,16 +43,12 @@ const CreateJobForm = () => {
         router.push('/jobs');
       }
     })
-
     
-      
     const onSubmit = (values: CreateAndEditJobType) => {
         mutate(values)
         
     }
-
-
-
+    
     return (
 
       <Form {...form}>
