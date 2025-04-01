@@ -29,16 +29,16 @@ const SearchForm = () => {
         type="text" 
         placeholder="Search Jobs" 
         name="search" 
-        className="!bg-white text-black placeholder:text-black/50" 
+     
       />
       <Select  name="jobStatus" defaultValue="all">
-        <SelectTrigger className="!bg-white text-black" >
+        <SelectTrigger  >
           <SelectValue placeholder="select job" />
         </SelectTrigger>
-        <SelectContent className="!bg-white">
+        <SelectContent>
         {
           ['all', ...Object.values(JobStatus)].map((jobStatus) => {
-            return <SelectItem className="text-black hover:!bg-muted" key={jobStatus} value={jobStatus}>
+            return <SelectItem key={jobStatus} value={jobStatus}>
                 {jobStatus}
             </SelectItem>
           })
