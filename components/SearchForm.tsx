@@ -13,14 +13,23 @@ import { Select,
 
 
 const SearchForm = () => {
+  const searchParams = useSearchParams();
+  const search = searchParams.get('search') || 'all';
+  const jobStatus = searchParams.get('jobStatus') || 'all';
+  const router = useRouter();
+  const pathname = usePathname();
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const search = formData.get('search') as string;
     const jobStatus = formData.get('jobStatus') as string;
 
-    console.log(search, jobStatus)
+    let params = new URLSearchParams();
+    params.set('search', search);
+    params.set('jobStatus', jobStatus);
 
+    router.push(`${pathname}?${params.toString()}`)
   }
 
   return (
@@ -28,10 +37,11 @@ const SearchForm = () => {
       <Input 
         type="text" 
         placeholder="Search Jobs" 
-        name="search" 
+        name="search"
+        defaultValue={search} 
      
       />
-      <Select  name="jobStatus" defaultValue="all">
+      <Select  name="jobStatus" defaultValue={jobStatus}>
         <SelectTrigger  >
           <SelectValue placeholder="select job" />
         </SelectTrigger>
