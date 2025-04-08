@@ -7,15 +7,19 @@ import { dehydrate
 
 export default async function JobDetailPage ({params}: {params: {id: string} }) {
     const queryClient = new QueryClient();
-
+    
+    const {id} = await params;
+    
     await queryClient.prefetchQuery({
-        queryKey: ['job', params.id],
-        queryFn: () => getSingleJobAction(params.id)
+        queryKey: ['job', id],
+        queryFn: () => getSingleJobAction(id)
     })
+
+    
 
     return (
         <HydrationBoundary state={dehydrate(queryClient)}>
-            <EditJobForm jobId={params.id} />
+            <EditJobForm jobId={id} />
         </HydrationBoundary>
     )
 }

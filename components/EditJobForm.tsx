@@ -1,3 +1,5 @@
+'use client'
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import {useForm} from "react-hook-form";
 import { JobStatus, CreateAndEditJobType, JobMode, createAndEditJobSchema } from "@/utils/types";
@@ -5,7 +7,7 @@ import { Button } from "./ui/button";
 import { Form } from "./ui/form";
 import {CustomFormField, CustomFormSelect} from "./FormComponents";
 import { useMutation, useQueryClient, useQuery } from "@tanstack/react-query";
-import { createJobAction, getSingleJobAction, updateJobAction } from "@/utils/actions";
+import { getSingleJobAction, updateJobAction } from "@/utils/actions";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 
@@ -35,6 +37,8 @@ const EditJobForm = ({jobId}: {jobId: string}) => {
     }
   })
 
+  console.log(data)
+
   const form = useForm<CreateAndEditJobType>({
     resolver: zodResolver(createAndEditJobSchema),
     defaultValues: {
@@ -45,6 +49,7 @@ const EditJobForm = ({jobId}: {jobId: string}) => {
       mode: (data?.mode as JobMode) || JobMode.FullTime
     }
   })
+
 
   const onSubmit = (values: CreateAndEditJobType) => {
     mutate(values);
@@ -72,7 +77,7 @@ const EditJobForm = ({jobId}: {jobId: string}) => {
             name="mode"
             control={form.control}
             labelText="job mode"
-            items={Object.values(JobStatus)}
+            items={Object.values(JobMode)}
           />          
           <Button
             type="submit"
