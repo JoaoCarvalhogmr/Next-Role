@@ -14,7 +14,7 @@ import { Select,
 
 const SearchForm = () => {
   const searchParams = useSearchParams();
-  const search = searchParams.get('search') || 'all';
+  const search = searchParams.get('search') || '';
   const jobStatus = searchParams.get('jobStatus') || 'all';
   const router = useRouter();
   const pathname = usePathname();
@@ -25,7 +25,7 @@ const SearchForm = () => {
     const search = formData.get('search') as string;
     const jobStatus = formData.get('jobStatus') as string;
 
-    let params = new URLSearchParams();
+    const params = new URLSearchParams();
     params.set('search', search);
     params.set('jobStatus', jobStatus);
 
