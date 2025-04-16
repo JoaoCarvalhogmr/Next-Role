@@ -9,7 +9,6 @@ import { QueryClient, dehydrate, HydrationBoundary } from "@tanstack/react-query
 const StatsPage = async() => { 
   const queryClient = new QueryClient();
   
-  
   await queryClient.fetchQuery({
     queryKey: ['stats'],
     queryFn: () => getStatsAction()

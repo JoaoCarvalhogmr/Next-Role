@@ -25,7 +25,7 @@ const JobsList = () => {
     </h2>
   }
 
-  if(jobs.length === 0) {
+  if(!isPending && jobs.length === 0) {
     return <h2 className="text-xl">
       No jobs found...
     </h2>
