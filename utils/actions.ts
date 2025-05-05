@@ -64,11 +64,13 @@ export async function getAllJobsAction({
           {
             position: {
               contains: search,
+              mode: 'insensitive'
             },
           },
           {
             company: {
               contains: search,
+              mode: 'insensitive'
             },
           },
         ],
@@ -80,6 +82,7 @@ export async function getAllJobsAction({
         status: jobStatus,
       };
     }
+    
     const skip = (page - 1) * limit;
 
     const jobs: JobType[] = await prisma.job.findMany({
